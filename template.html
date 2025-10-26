@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Explorer — HueByte Private CDN</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        :root {
+            color-scheme: light dark;
+            --bg: #0f172a;
+            --fg: #e2e8f0;
+            --muted: rgba(148, 163, 184, 0.8);
+            --accent: #38bdf8;
+            --card: rgba(15, 23, 42, 0.78);
+            --border: rgba(148, 163, 184, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            display: grid;
+            place-items: center;
+            font-family: "Inter", system-ui, sans-serif;
+            background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15), transparent 55%),
+                radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.12), transparent 60%),
+                var(--bg);
+            color: var(--fg);
+            padding: clamp(1.5rem, 4vw, 3rem);
+        }
+
+        main {
+            width: min(900px, 90vw);
+            background: var(--card);
+            border-radius: 24px;
+            border: 1px solid var(--border);
+            box-shadow: 0 30px 60px -35px rgba(15, 23, 42, 0.8);
+            padding: clamp(1.8rem, 3vw, 2.4rem);
+            backdrop-filter: blur(14px);
+        }
+
+        header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            margin-bottom: 1.6rem;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: clamp(1.8rem, 3.5vw, 2.4rem);
+            letter-spacing: -0.02em;
+        }
+
+        nav {
+            font-size: 0.95rem;
+            color: var(--muted);
+        }
+
+        nav a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1rem;
+        }
+
+        th,
+        td {
+            padding: 0.75rem;
+            text-align: left;
+            border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+        }
+
+        th {
+            font-weight: 600;
+            color: rgba(226, 232, 240, 0.85);
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 0.09em;
+        }
+
+        tbody tr:hover {
+            background: rgba(148, 163, 184, 0.08);
+        }
+
+        .name a {
+            color: var(--fg);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .name a:hover {
+            color: var(--accent);
+        }
+
+        .name span.icon {
+            font-size: 1rem;
+        }
+
+        .empty {
+            text-align: center;
+            color: var(--muted);
+            padding: 2rem 0;
+        }
+
+        footer {
+            margin-top: 2.2rem;
+            font-size: 0.85rem;
+            color: var(--muted);
+            text-align: center;
+        }
+
+        .download {
+            font-size: 0.85rem;
+            color: rgba(226, 232, 240, 0.85);
+            text-decoration: none;
+        }
+
+        .download:hover {
+            text-decoration: underline;
+            color: var(--accent);
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <header>
+            <span>HueByte Private CDN</span>
+            <h1>Explorer</h1>
+            <nav>{{breadcrumbs}}</nav>
+        </header>
+        <section>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Size</th>
+                        <th>Updated</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{files}}
+                </tbody>
+            </table>
+        </section>
+        <footer>
+            &copy; {{year}} HueByte. Private infrastructure — do not distribute.
+        </footer>
+    </main>
+</body>
+
+</html>
