@@ -23,31 +23,35 @@
         body {
             margin: 0;
             min-height: 100vh;
-            display: grid;
-            place-items: center;
+            display: flex;
+            justify-content: center;
+            align-items: stretch;
             font-family: "Inter", system-ui, sans-serif;
             background: radial-gradient(circle at 20% 20%, rgba(59, 130, 246, 0.15), transparent 55%),
                 radial-gradient(circle at 80% 30%, rgba(236, 72, 153, 0.12), transparent 60%),
                 var(--bg);
             color: var(--fg);
-            padding: clamp(1.5rem, 4vw, 3rem);
+            padding: clamp(1.5rem, 5vw, 3rem);
         }
 
         main {
-            width: min(900px, 90vw);
+            width: min(880px, 94vw);
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            gap: clamp(1.2rem, 3vw, 1.8rem);
             background: var(--card);
             border-radius: 24px;
             border: 1px solid var(--border);
             box-shadow: 0 30px 60px -35px rgba(15, 23, 42, 0.8);
-            padding: clamp(1.8rem, 3vw, 2.4rem);
-            backdrop-filter: blur(14px);
+            padding: clamp(1.8rem, 4vw, 2.6rem);
+            backdrop-filter: blur(16px);
         }
 
         header {
             display: flex;
             flex-direction: column;
             gap: 0.6rem;
-            margin-bottom: 1.6rem;
         }
 
         h1 {
@@ -70,10 +74,22 @@
             text-decoration: underline;
         }
 
+        .table-wrapper {
+            flex: 1 1 auto;
+            min-height: 0;
+            width: 100%;
+            border-radius: 18px;
+            border: 1px solid rgba(148, 163, 184, 0.12);
+            background: rgba(15, 23, 42, 0.45);
+            overflow-x: auto;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 1rem;
+            min-width: 680px;
         }
 
         th,
@@ -81,6 +97,7 @@
             padding: 0.75rem;
             text-align: left;
             border-bottom: 1px solid rgba(148, 163, 184, 0.12);
+            vertical-align: middle;
         }
 
         th {
@@ -101,6 +118,7 @@
             display: inline-flex;
             align-items: center;
             gap: 0.5rem;
+            flex-wrap: wrap;
         }
 
         .name a:hover {
@@ -111,6 +129,26 @@
             font-size: 1rem;
         }
 
+        .name {
+            white-space: normal;
+            word-break: break-word;
+        }
+
+        th:nth-child(2),
+        th:nth-child(3),
+        th:nth-child(4),
+        td:nth-child(2),
+        td:nth-child(3),
+        td:nth-child(4) {
+            width: 1%;
+            white-space: nowrap;
+        }
+
+        .action {
+            text-align: right;
+            white-space: nowrap;
+        }
+
         .empty {
             text-align: center;
             color: var(--muted);
@@ -118,7 +156,6 @@
         }
 
         footer {
-            margin-top: 2.2rem;
             font-size: 0.85rem;
             color: var(--muted);
             text-align: center;
@@ -134,6 +171,45 @@
             text-decoration: underline;
             color: var(--accent);
         }
+
+        @media (max-width: 720px) {
+            main {
+                padding: clamp(1.4rem, 6vw, 2rem);
+                width: 100%;
+            }
+
+            header {
+                gap: 0.4rem;
+            }
+
+            .table-wrapper {
+                border-radius: 16px;
+            }
+
+            table {
+                min-width: 620px;
+            }
+
+            th,
+            td {
+                padding: 0.65rem 0.75rem;
+                font-size: 0.95rem;
+            }
+
+            th {
+                font-size: 0.7rem;
+            }
+        }
+
+        @media (min-width: 960px) {
+            body {
+                padding: 2em 1.5em;
+            }
+
+            main {
+                min-height: calc(100vh - 4em);
+            }
+        }
     </style>
 </head>
 
@@ -144,7 +220,7 @@
             <h1>Explorer</h1>
             <nav>{{breadcrumbs}}</nav>
         </header>
-        <section>
+        <section class="table-wrapper" aria-label="Directory listing">
             <table>
                 <thead>
                     <tr>

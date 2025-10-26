@@ -262,12 +262,11 @@ function renderRow(item) {
 		: `<a class="download" href="${escapeHtml(
 				item.downloadHref
 		  )}">Download</a>`;
-
 	return `<tr>
-        <td class="name"><a href="${href}"><span class="icon">${icon}</span>${displayName}</a></td>
-        <td>${escapeHtml(size || "")}</td>
-        <td>${escapeHtml(formattedDate)}</td>
-        <td>${downloadLink}</td>
+		<td class="name"><a href="${href}"><span class="icon">${icon}</span>${displayName}</a></td>
+		<td>${escapeHtml(size || "")}</td>
+		<td>${escapeHtml(formattedDate)}</td>
+		<td class="action">${downloadLink || "&mdash;"}</td>
     </tr>`;
 }
 
